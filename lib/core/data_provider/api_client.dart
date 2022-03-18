@@ -47,27 +47,7 @@ class ApiClient {
       }
 
       if (response.statusCode == 200) {
-        final Map data = json.decode(response.toString());
-
-        final code = data['code'];
-        if (code == 200) {
-          return response;
-        } else {
-          if (code < 500) {
-            List<String> messages = data['messages'].cast<String>();
-
-            switch (code) {
-              case 401:
-                break;
-              default:
-                ViewUtil.showSnackBar(_extractMessages(messages));
-
-                throw Exception(_extractMessages(messages));
-            }
-          } else {
-            throw Exception();
-          }
-        }
+        return response;
       } else if (response.statusCode == 401) {
       } else if (response.statusCode == 500) {
       } else {}
@@ -82,45 +62,13 @@ class ApiClient {
         case DioErrorType.other:
           break;
         case DioErrorType.response:
-          try {
-            final response = e.response;
-            if (response != null) {
-              final Map data = json.decode(response.toString());
-
-              final code = data['code'];
-
-              if (code < 500) {
-                List<String> messages = data['messages'].cast<String>();
-
-                switch (code) {
-                  case 401:
-                    break;
-                  default:
-                    ViewUtil.showSnackBar(_extractMessages(messages));
-
-                    throw Exception(_extractMessages(messages));
-                }
-              } else {
-                throw Exception();
-              }
-            }
-          } catch (e) {
-            throw Exception(e);
-          }
           break;
 
         default:
       }
-    } catch (e) {}
-  }
-
-  _extractMessages(List<String> messages) {
-    var str = "";
-
-    for (var element in messages) {
-      str += element;
+    } catch (e) {
+      e.toString();
     }
-
-    return str;
   }
+
 }

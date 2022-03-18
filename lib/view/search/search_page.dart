@@ -30,7 +30,7 @@ class _SearchView extends StatelessWidget {
     return Column(
       children:  const [
          SearchTextFieldAreaView(),
-         SearchItemListView(),
+         Expanded(child: SearchItemListView()),
       ],
     );
   }

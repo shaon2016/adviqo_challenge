@@ -1,3 +1,4 @@
+import 'package:adviqo_challenge/view/search/component/search_item_view.dart';
 import 'package:adviqo_challenge/view/search/cubit/search_cubit.dart';
 import 'package:adviqo_challenge/view/search/cubit/search_state.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,30 @@ class SearchItemListView extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             case DataStatus.success:
-              return Container();
+              if (state.data.isEmpty) {
+                return const Center(
+                  child: Text("No product found"),
+                );
+              }
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: state.data.length,
+                  itemBuilder: (ctx, index) {
+                    context
+                        .read<SearchCubit>()
+                        .handlePagination(index); // doing pagination
+
+                    if (index == state.data.length - 1) {
+                      return const Align(
+                        child: CircularProgressIndicator(),
+                        alignment: Alignment.center,
+                      );
+                    }
+
+                    return SearchItemView(item: state.data[index]);
+                  });
             case DataStatus.failure:
-              return Container();
+              return const Text("Failed to load data");
           }
         },
         listener: (ctx, state) {});

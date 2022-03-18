@@ -1,19 +1,25 @@
-
+import 'package:adviqo_challenge/core/pagination_handler.dart';
 import 'package:adviqo_challenge/view/search/cubit/search_state.dart';
 import 'package:adviqo_challenge/view/search/repo/search_reoo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../other/enums.dart';
 
-class SearchCubit extends Cubit<SearchState> {
+class SearchCubit extends Cubit<SearchState> with PaginationHandler {
   final SearchRepo _repo;
 
   SearchCubit(this._repo) : super(SearchState.init());
 
-  fetchBloodDonor() async {
+  int _searchCurrentOffset = 1;
+  String _currentSearchQuery = '';
+
+  searchItems() async {
+    if (_currentSearchQuery.isEmpty) return;
+
     emit(state.copyWith(status: DataStatus.loading));
 
     try {
-      final data = await _repo.search();
+      final data = await _repo.searchItems(_currentSearchQuery, _searchCurrentOffset++);
 
       emit(state.copyWith(
           data: [...state.data, ...data], status: DataStatus.success));
@@ -22,4 +28,14 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
+  handlePagination(int index) {
+    handleScrollWithIndex(index, _searchCurrentOffset, () => searchItems());
+  }
+
+  doSearch(String searchQuery) {
+    _searchCurrentOffset = 1;
+    _currentSearchQuery = searchQuery;
+
+    searchItems();
+  }
 }

@@ -1,10 +1,11 @@
+import 'package:adviqo_challenge/view/search/model/product_search_response.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../other/enums.dart';
 
 class SearchState extends Equatable {
   final DataStatus status;
-  final List<String> data;
+  final List<ProductSearchResults> data;
 
   const SearchState({required this.status, required this.data});
 
@@ -14,7 +15,7 @@ class SearchState extends Equatable {
 
   SearchState copyWith({
     DataStatus? status,
-    List<String>? data,
+    List<ProductSearchResults>? data,
   }) {
     return SearchState(
       status: status ?? this.status,
@@ -23,7 +24,5 @@ class SearchState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        status,
-      ];
+  List<Object?> get props => [status, data];
 }
