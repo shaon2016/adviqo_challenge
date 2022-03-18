@@ -36,17 +36,6 @@ class GlobalImageLoader extends StatelessWidget {
         errorBuilder: (context, error, stackTrace) =>
         const Text('errors occurred!'),
       ),
-      //     CachedNetworkImage(
-      //   fit: fit,
-      //   imageUrl: "${AppUrl.IMAGE_BASE_URL}$imageUrl",
-      //   color: color,
-      //   placeholder: (context, url) =>
-      //       //     Center(
-      //       //   child: CircularProgressIndicator(),
-      //       // ),
-      //
-      //   errorWidget: (context, url, error) => Container(),
-      // ),
     );
   }
 }

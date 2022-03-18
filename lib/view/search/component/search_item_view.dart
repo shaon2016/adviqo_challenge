@@ -5,45 +5,57 @@ import 'package:flutter/material.dart';
 class SearchItemView extends StatelessWidget {
   final ProductSearchResults item;
 
-  const SearchItemView({Key? key, required this.item})
-      : super(key: key);
+  const SearchItemView({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const GlobalImageLoader(
-          imageUrl: "",
-          imageHeight: 48,
-          imageWidth: 48,
-        ),
-        Expanded(
-            child: Column(
-          children:  [
-            Text(
-              "ID: ${item.id}",
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+      child: Row(
+        children: [
+           GlobalImageLoader(
+            imageUrl: item.thumbnail,
+            imageHeight: 48,
+            imageWidth: 48,
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "ID: ${item.id}",
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            Text(
-              item.title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+              const SizedBox(
+                height: 4,
               ),
-            ),
-            Text(
-              "Price: ${item.price}",
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+              Text(
+                item.title,
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-          ],
-        )),
-      ],
+              const SizedBox(
+                height: 4,
+              ),
+              Text(
+                "Price: ${item.price}",
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ],
+          )),
+        ],
+      ),
     );
   }
 }

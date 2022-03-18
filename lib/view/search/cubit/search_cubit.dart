@@ -12,14 +12,19 @@ class SearchCubit extends Cubit<SearchState> with PaginationHandler {
 
   int _searchCurrentOffset = 1;
   String _currentSearchQuery = '';
+  bool _isToShowSearchMainLoader = true;
 
   searchItems() async {
     if (_currentSearchQuery.isEmpty) return;
 
-    emit(state.copyWith(status: DataStatus.loading));
+    if (_isToShowSearchMainLoader) {
+      emit(state.copyWith(status: DataStatus.loading));
+      _isToShowSearchMainLoader = false;
+    }
 
     try {
-      final data = await _repo.searchItems(_currentSearchQuery, _searchCurrentOffset++);
+      final data =
+          await _repo.searchItems(_currentSearchQuery, _searchCurrentOffset++);
 
       emit(state.copyWith(
           data: [...state.data, ...data], status: DataStatus.success));
@@ -33,6 +38,7 @@ class SearchCubit extends Cubit<SearchState> with PaginationHandler {
   }
 
   doSearch(String searchQuery) {
+    _isToShowSearchMainLoader = true;
     _searchCurrentOffset = 1;
     _currentSearchQuery = searchQuery;
 
