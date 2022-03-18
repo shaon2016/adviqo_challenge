@@ -25,8 +25,11 @@ class SearchItemView extends StatelessWidget {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 4,
+              ),
               Text(
-                "ID: ${item.id}",
+                item.title,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w700,
@@ -36,20 +39,10 @@ class SearchItemView extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                item.title,
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              const SizedBox(
-                height: 4,
-              ),
-              Text(
                 "Price: ${item.price}",
                 style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w300,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],

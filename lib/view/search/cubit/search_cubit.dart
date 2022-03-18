@@ -38,6 +38,7 @@ class SearchCubit extends Cubit<SearchState> with PaginationHandler {
   }
 
   doSearch(String searchQuery) {
+    state.data.clear();
     _isToShowSearchMainLoader = true;
     _searchCurrentOffset = 1;
     _currentSearchQuery = searchQuery;
