@@ -8,26 +8,15 @@ import 'app_url.dart';
 class ApiClient {
   late Dio _dio;
 
-  final Map<String, dynamic> _header = {};
-
   _initDio() {
-    // _header = {
-    //   'language': PrefHelper.getString(PrefConstant.LANGUAGE, "en"),
-    //   HttpHeaders.authorizationHeader:
-    //       "Bearer ${PrefHelper.getString(PrefConstant.TOKEN)}"
-    // };
-
-    // _dio = d.Dio(d.BaseOptions(baseUrl: AppUrl.BASE_URL, headers: _header));
-    _dio = Dio(BaseOptions(baseUrl: AppUrl.BASE_URL));
-    // client = Provider((ref) => _dio);
-
+    _dio = Dio(BaseOptions(baseUrl: AppUrl.baseUrl));
     _initInterceptors();
   }
 
   void _initInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       debugPrint(
-          'REQUEST[${options.method}] => PATH: ${AppUrl.BASE_URL}${options.path} '
+          'REQUEST[${options.method}] => PATH: ${AppUrl.baseUrl}${options.path} '
           '=> Request Values: param: ${options.queryParameters}, DATA: ${options.data}, => HEADERS: ${options.headers}');
       return handler.next(options);
     }, onResponse: (response, handler) {
