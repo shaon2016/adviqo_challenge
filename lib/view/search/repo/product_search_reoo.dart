@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import '../../../core/data_provider/app_url.dart';
 import '../../../other/enums.dart';
 
-class SearchRepo extends BaseRepo {
+class ProductSearchRepo extends BaseRepo {
   Future<List<ProductSearchResults>> searchItems(String searchQuery, int offset) async {
     final map = <String, dynamic>{};
     map['offset'] = offset;

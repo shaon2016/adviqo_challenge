@@ -3,21 +3,21 @@ import 'package:equatable/equatable.dart';
 
 import '../../../other/enums.dart';
 
-class SearchState extends Equatable {
+class ProductSearchState extends Equatable {
   final DataStatus status;
   final List<ProductSearchResults> data;
 
-  const SearchState({required this.status, required this.data});
+  const ProductSearchState({required this.status, required this.data});
 
-  SearchState.init()
+  ProductSearchState.init()
       : status = DataStatus.initial,
         data = [];
 
-  SearchState copyWith({
+  ProductSearchState copyWith({
     DataStatus? status,
     List<ProductSearchResults>? data,
   }) {
-    return SearchState(
+    return ProductSearchState(
       status: status ?? this.status,
       data: data ?? this.data,
     );

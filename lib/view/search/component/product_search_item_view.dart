@@ -2,10 +2,10 @@ import 'package:adviqo_challenge/global/widgets/global_image_loader.dart';
 import 'package:adviqo_challenge/view/search/model/product_search_response.dart';
 import 'package:flutter/material.dart';
 
-class SearchItemView extends StatelessWidget {
+class ProductSearchItemView extends StatelessWidget {
   final ProductSearchResults item;
 
-  const SearchItemView({Key? key, required this.item}) : super(key: key);
+  const ProductSearchItemView({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

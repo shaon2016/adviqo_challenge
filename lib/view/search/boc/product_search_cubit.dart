@@ -1,14 +1,13 @@
 import 'package:adviqo_challenge/core/pagination_handler.dart';
-import 'package:adviqo_challenge/view/search/cubit/search_state.dart';
-import 'package:adviqo_challenge/view/search/repo/search_reoo.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:adviqo_challenge/view/search/boc/product_search_state.dart';
+import 'package:adviqo_challenge/view/search/repo/product_search_reoo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../other/enums.dart';
 
-class SearchCubit extends Cubit<SearchState> with PaginationHandler {
-  final SearchRepo _repo;
+class ProductSearchCubit extends Cubit<ProductSearchState> with PaginationHandler {
+  final ProductSearchRepo _repo;
 
-  SearchCubit(this._repo) : super(SearchState.init());
+  ProductSearchCubit(this._repo) : super(ProductSearchState.init());
 
   int _searchCurrentOffset = 1;
   String _currentSearchQuery = '';

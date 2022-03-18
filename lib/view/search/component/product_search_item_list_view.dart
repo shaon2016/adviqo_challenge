@@ -1,6 +1,6 @@
-import 'package:adviqo_challenge/view/search/component/search_item_view.dart';
-import 'package:adviqo_challenge/view/search/cubit/search_cubit.dart';
-import 'package:adviqo_challenge/view/search/cubit/search_state.dart';
+import 'package:adviqo_challenge/view/search/boc/product_search_cubit.dart';
+import 'package:adviqo_challenge/view/search/boc/product_search_state.dart';
+import 'package:adviqo_challenge/view/search/component/product_search_item_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +11,7 @@ class SearchItemListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SearchCubit, SearchState>(
+    return BlocConsumer<ProductSearchCubit, ProductSearchState>(
         builder: (ctx, state) {
           switch (state.status) {
             case DataStatus.initial:
@@ -31,7 +31,7 @@ class SearchItemListView extends StatelessWidget {
                   itemCount: state.data.length,
                   itemBuilder: (ctx, index) {
                     context
-                        .read<SearchCubit>()
+                        .read<ProductSearchCubit>()
                         .handlePagination(index); // doing pagination
 
                     if (index == state.data.length - 1) {
@@ -41,7 +41,7 @@ class SearchItemListView extends StatelessWidget {
                       );
                     }
 
-                    return SearchItemView(item: state.data[index]);
+                    return ProductSearchItemView(item: state.data[index]);
                   });
             case DataStatus.failure:
               return const Text("Failed to load data");

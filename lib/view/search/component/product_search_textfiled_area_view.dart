@@ -1,5 +1,5 @@
 import 'package:adviqo_challenge/util/view_util.dart';
-import 'package:adviqo_challenge/view/search/cubit/search_cubit.dart';
+import 'package:adviqo_challenge/view/search/boc/product_search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +39,7 @@ class _SearchTextFieldAreaViewState extends State<SearchTextFieldAreaView> {
             onPressed: () {
               ViewUtil.hideKeyboard(context);
               final searchQuery = _searchTextController.text.toString();
-              context.read<SearchCubit>().doSearch(searchQuery);
+              context.read<ProductSearchCubit>().doSearch(searchQuery);
             },
             icon: const Icon(
               Icons.search,
