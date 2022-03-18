@@ -14,7 +14,7 @@ class ProductSearchRepo extends BaseRepo {
 
     try {
       final result = await apiClient.request(
-        AppUrl.searchUrl,
+        AppUrl.productSearchUrl,
         Method.get,
         map,
       );

@@ -73,7 +73,7 @@ class ProductSearchResults {
             ? json['price'].toDouble()
             : json['price']
         : 0.0;
-    thumbnail = json['thumbnail'];
+    thumbnail = json['thumbnail'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
