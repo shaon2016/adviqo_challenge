@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:adviqo_challenge/core/data_provider/app_url.dart';
-import 'package:adviqo_challenge/view/detail/model/product_detail_response.dart';
 import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,18 +15,26 @@ main() {
   });
 
   test("Should return product detail", () async {
-    const productId = "MLU479145688";
-    const url = "${AppUrl.productDetailUrl}/$productId";
+    final map = <String, dynamic>{};
+    map['offset'] = 1;
+    map['q'] = "";
+    map['limit'] = 20;
+
+    const url = AppUrl.productSearchUrl;
     // Our fake mock data
-    dioAdapter.onGet(url, (server) => server.reply(200, fakeDetailResponse));
+    dioAdapter.onGet(
+      url,
+      (server) => server.reply(200, fakeSearchResponse),
+      queryParameters: map,
+    );
 
     // Our actual data from server
-    response = await dio.get(url);
+    response = await dio.get(url, queryParameters: map);
 
     // Matching our server response code
     expect(response.statusCode, 200);
 
     // Matching Server response with our fake mock response
-    expect(response.data.toString(), fakeDetailResponse);
+    expect(response.data.toString(), fakeSearchResponse);
   });
 }
