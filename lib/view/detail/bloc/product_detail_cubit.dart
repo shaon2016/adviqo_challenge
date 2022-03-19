@@ -6,16 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProductDetailCubit extends Cubit<ProductDetailState> {
   final ProductDetailRepo _productDetailRepo;
 
-  ProductDetailCubit(this._productDetailRepo)
+  ProductDetailCubit(this._productDetailRepo, String productId)
       : super(const ProductDetailState.init()) {
-    fetch();
+    fetch(productId);
   }
 
-  fetch() async {
+  fetch(String productId) async {
     try {
       emit(state.copyWith(status: DataStatus.loading));
 
-      final data = await _productDetailRepo.fetch();
+      final data = await _productDetailRepo.fetch(productId);
 
       emit(state.copyWith(status: DataStatus.success, data: data));
     } catch (e) {

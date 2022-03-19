@@ -5,16 +5,13 @@ import '../../../core/data_provider/app_url.dart';
 import '../../../other/enums.dart';
 
 class ProductDetailRepo extends BaseRepo {
-  final String _productId;
 
-  ProductDetailRepo(this._productId);
-
-  Future<ProductDetailsResponse?> fetch() async {
+  Future<ProductDetailsResponse?> fetch(String productId) async {
     final map = <String, dynamic>{};
 
     try {
       final result = await apiClient.request(
-        AppUrl.productDetailUrl + "/$_productId",
+        AppUrl.productDetailUrl + "/$productId",
         Method.get,
         map,
       );

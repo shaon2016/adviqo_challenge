@@ -1,31 +1,35 @@
+import 'dart:convert';
 import 'package:adviqo_challenge/core/data_provider/app_url.dart';
 import 'package:adviqo_challenge/view/detail/model/product_detail_response.dart';
-import 'package:adviqo_challenge/view/detail/repo/product_detail_repo.dart';
 import 'package:dio/dio.dart';
+import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-
 import '../resource/fake_response.dart';
 
-class DioMock extends Mock implements Dio {}
-
-class Repo extends Mock implements ProductDetailRepo {}
-
 main() {
-  final dio = DioMock();
-  dio.options.baseUrl = AppUrl.baseUrl;
+  late Dio dio;
+  late DioAdapter dioAdapter;
+  Response<dynamic> response;
 
-  final repo = Repo();
+  setUp(() {
+    dio = Dio(BaseOptions(baseUrl: AppUrl.baseUrl));
+    dioAdapter = DioAdapter(dio: dio);
+  });
 
   test("Should return product detail", () async {
-    final response = Response(
-        data: detailFakeResponse,
-        requestOptions: RequestOptions(path: AppUrl.productDetailUrl));
+    const productId = "MLU479145688";
+    const url = "${AppUrl.productDetailUrl}/$productId";
+    // Our fake mock data
+    dioAdapter.onGet(url, (server) => server.reply(200, jsonDecode(detailFakeResponse)));
 
-    const url = "${AppUrl.productDetailUrl}/MLU479145688";
-    when(dio.get(url)).thenAnswer((_) async => response);
+    // Our actual data from server
+    response = await dio.get(url);
 
-    final result = await repo.fetch();
-    expect(result, isA<ProductDetailsResponse>());
+    // Matching our server response code
+    expect(response.statusCode, 200);
+
+    // Matching Server response with our fake mock response
+    final data = ProductDetailsResponse.fromJson(response.data);
+    expect(data, isA<ProductDetailsResponse>());
   });
 }
