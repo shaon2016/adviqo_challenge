@@ -6,11 +6,11 @@ import '../../../core/data_provider/app_url.dart';
 import '../../../other/enums.dart';
 
 class ProductSearchRepo extends BaseRepo {
-  Future<List<ProductSearchResults>> searchItems(String searchQuery, int offset) async {
+  Future<List<ProductSearchResults>> searchItems(String searchQuery, int offset, {int limit = 20}) async {
     final map = <String, dynamic>{};
     map['offset'] = offset;
     map['q'] = searchQuery;
-    map['limit'] = 20;
+    map['limit'] = limit;
 
     try {
       final result = await apiClient.request(
