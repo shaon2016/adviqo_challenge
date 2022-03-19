@@ -20,26 +20,53 @@ main() {
     dioAdapter = DioAdapter(dio: dio);
   });
 
-  test("Should return search product list with length 2", () async {
-    final map = <String, dynamic>{};
-    map['offset'] = 1;
-    map['q'] = "notebook";
-    map['limit'] = 2;
+  group("Test Search API", () {
+    test("Should return search product list with length 2", () async {
+      final map = <String, dynamic>{};
+      map['offset'] = 1;
+      map['q'] = "notebook";
+      map['limit'] = 2;
 
-    const url = AppUrl.productSearchUrl;
-    // Our fake mock data
-    dioAdapter.onGet(
-      url,
-      (server) => server.reply(200, jsonDecode(fakeSearchResponse)),
-      queryParameters: map,
-    );
+      const url = AppUrl.productSearchUrl;
+      // Our fake mock data
+      dioAdapter.onGet(
+        url,
+        (server) => server.reply(200, jsonDecode(fakeSearchResponse)),
+        queryParameters: map,
+      );
 
-    // Our actual data from server
-    fakeResponse = await dio.get(url, queryParameters: map);
-    final productSearchData = ProductSearchResponse.fromJson(fakeResponse.data);
+      // Our actual data from server
+      fakeResponse = await dio.get(url, queryParameters: map);
+      final productSearchData =
+          ProductSearchResponse.fromJson(fakeResponse.data);
 
-    // Matching Server response with our fake mock response
-    final searchData = await repo.searchItems("notebook", 1, limit: 2);
-    expect(productSearchData.results.length, searchData.length);
+      // Matching Server response with our fake mock response
+      final searchData = await repo.searchItems("notebook", 1, limit: 2);
+      expect(productSearchData.results.length, searchData.length);
+    });
+
+    test("Should return search product list with length 0", () async {
+      final map = <String, dynamic>{};
+      map['offset'] = 1;
+      map['q'] = "";
+      map['limit'] = 0;
+
+      const url = AppUrl.productSearchUrl;
+      // Our fake mock data
+      dioAdapter.onGet(
+        url,
+        (server) => server.reply(200, jsonDecode(fakeSearchResponseZeroResult)),
+        queryParameters: map,
+      );
+
+      // Our actual data from server
+      fakeResponse = await dio.get(url, queryParameters: map);
+      final productSearchData =
+          ProductSearchResponse.fromJson(fakeResponse.data);
+
+      // Matching Server response with our fake mock response
+      final searchData = await repo.searchItems("", 1, limit: 0);
+      expect(productSearchData.results.length, searchData.length);
+    });
   });
 }

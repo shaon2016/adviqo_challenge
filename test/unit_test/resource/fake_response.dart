@@ -31,3 +31,15 @@ const fakeSearchResponse = """
 	]
 }
 """;
+const fakeSearchResponseZeroResult = """
+{
+	"paging": {
+		"total": 12629,
+		"primary_results": 1000,
+		"offset": 0,
+		"limit": 50
+	},
+
+	"results": []
+}
+""";
