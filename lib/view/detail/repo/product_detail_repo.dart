@@ -19,7 +19,8 @@ class ProductDetailRepo extends BaseRepo {
       if (result != null && result.data != null) {
         final data = ProductDetailsResponse.fromJson(result.data);
 
-        _storeLastVisitedProduct(data);
+        final currentProduct = Product(id: data.id, title: data.title);
+        _addProduct(currentProduct);
         return data;
       }
     } catch (e) {
@@ -29,14 +30,27 @@ class ProductDetailRepo extends BaseRepo {
     return null;
   }
 
-  _storeLastVisitedProduct(ProductDetailsResponse data) {
-    final products = Product.openedBox();
-    final currentProduct = Product(id: data.id, title: data.title);
+  _addProduct(Product product) async {
+    try {
+      final box = await Product.openBox();
 
-    if (products.length > 4) {
-      products.deleteAt(0);
+      if (box.length > 4) {
+        box.deleteAt(0);
+      } else {
+        // product exist
+        final existProductIndex = box.values
+            .toList()
+            .indexWhere((element) => element.id == product.id);
+
+        if (existProductIndex > -1) box.deleteAt(existProductIndex);
+      }
+
+      // Caching the product
+      await box.add(product);
+      // closing the box
+      await box.close();
+    } catch (e) {
+      rethrow;
     }
-
-    products.add(currentProduct);
   }
 }
