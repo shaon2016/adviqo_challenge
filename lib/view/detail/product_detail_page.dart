@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'component/product_detail_view.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  final String productId;
 
-  const ProductDetailPage({Key? key, required this.productId})
+  const ProductDetailPage({Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final String productId = ModalRoute.of(context)?.settings.arguments as String;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Details"),

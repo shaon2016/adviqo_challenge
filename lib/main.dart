@@ -1,3 +1,5 @@
+import 'package:adviqo_challenge/core/app_routes.dart';
+import 'package:adviqo_challenge/view/detail/product_detail_page.dart';
 import 'package:adviqo_challenge/view/search/product_search_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +12,14 @@ class _MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Challenge App',
-      home: ProductSearchPage(),);
+      home: const ProductSearchPage(),
+      routes: {
+        AppRoute.searchPage: (ctx) => const ProductSearchPage(),
+        AppRoute.detailPage: (ctx) => const ProductDetailPage(),
+      },
+    );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:adviqo_challenge/core/app_routes.dart';
 import 'package:adviqo_challenge/global/widgets/global_image_loader.dart';
 import 'package:adviqo_challenge/view/detail/product_detail_page.dart';
 import 'package:adviqo_challenge/view/search/model/product_search_response.dart';
@@ -14,11 +15,7 @@ class ProductSearchItemView extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProductDetailPage(productId: item.id)),
-          );
+          Navigator.pushNamed(context, AppRoute.detailPage, arguments: item.id);
         },
         child: Row(
           children: [
