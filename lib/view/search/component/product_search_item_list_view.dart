@@ -36,12 +36,6 @@ class SearchItemListView extends StatelessWidget {
                     bool isToLoadNextPage =
                         context.read<ProductSearchCubit>().isToLoadNextPage;
 
-                    if (index == state.data.length - 1 && !isToLoadNextPage) {
-                      return Container(
-                        height: 0,
-                      );
-                    }
-
                     if (index == state.data.length - 1 && isToLoadNextPage) {
                       return const Align(
                         child: CircularProgressIndicator(),
