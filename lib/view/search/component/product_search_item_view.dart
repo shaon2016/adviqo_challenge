@@ -1,6 +1,5 @@
 import 'package:adviqo_challenge/core/app_routes.dart';
 import 'package:adviqo_challenge/global/widgets/global_image_loader.dart';
-import 'package:adviqo_challenge/view/detail/product_detail_page.dart';
 import 'package:adviqo_challenge/view/search/model/product_search_response.dart';
 import 'package:flutter/material.dart';
 

@@ -27,14 +27,22 @@ class SearchItemListView extends StatelessWidget {
                 );
               }
               return ListView.builder(
+                  controller: context
+                      .read<ProductSearchCubit>()
+                      .productScrollController,
                   shrinkWrap: true,
                   itemCount: state.data.length,
                   itemBuilder: (ctx, index) {
-                    context
-                        .read<ProductSearchCubit>()
-                        .handlePagination(index); // doing pagination
+                    bool isToLoadNextPage =
+                        context.read<ProductSearchCubit>().isToLoadNextPage;
 
-                    if (index == state.data.length - 1) {
+                    if (index == state.data.length - 1 && !isToLoadNextPage) {
+                      return Container(
+                        height: 0,
+                      );
+                    }
+
+                    if (index == state.data.length - 1 && isToLoadNextPage) {
                       return const Align(
                         child: CircularProgressIndicator(),
                         alignment: Alignment.center,

@@ -22,8 +22,6 @@ class ProductSearchRepo extends BaseRepo {
       if (result != null && result.data != null) {
         final data = ProductSearchResponse.fromJson(result.data);
 
-        debugPrint(data.results.toString());
-
         return data.results;
       }
     } catch (e) {
