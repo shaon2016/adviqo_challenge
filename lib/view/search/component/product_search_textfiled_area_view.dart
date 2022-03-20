@@ -29,9 +29,16 @@ class _SearchTextFieldAreaViewState extends State<SearchTextFieldAreaView> {
           Expanded(
             child: TextField(
               controller: _searchTextController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 hintText: "Search",
+                suffix: InkWell(
+                  onTap: () {
+                    _searchTextController.clear();
+                    context.read<ProductSearchCubit>().clearSearch();
+                  },
+                  child: const Icon(Icons.clear),
+                ),
               ),
             ),
           ),

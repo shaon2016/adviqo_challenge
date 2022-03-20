@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../other/enums.dart';
 
-class ProductSearchCubit extends Cubit<ProductSearchState>  {
+class ProductSearchCubit extends Cubit<ProductSearchState> {
   final ProductSearchRepo _repo;
 
   ProductSearchCubit(this._repo) : super(ProductSearchState.init()) {
@@ -54,5 +54,9 @@ class ProductSearchCubit extends Cubit<ProductSearchState>  {
     _currentSearchQuery = searchQuery;
 
     searchItems();
+  }
+
+  void clearSearch() {
+    emit(state.copyWith(data: [], status: DataStatus.initial));
   }
 }
