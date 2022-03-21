@@ -1,16 +1,36 @@
 # adviqo_challenge
 
-A new Flutter project.
+Project Structure
 
-## Getting Started
+core 
+    base
+    data_provider
+global
+    widgets
+other
+util
+view
+    detail
+        bloc
+        component
+        model
+        repo  
+    search
+        bloc
+        component
+        model
+        repo
 
-This project is a starting point for a Flutter application.
+Test structure
 
-A few resources to get you started if this is your first Flutter project:
+test
+    unit_test
+        detail
+        resource
+        search
+        
+In this project, we have used Bloc state management system.
+You can search products, can see details. 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+We have also implemented unit test cases for our two api and hive NoSql store product logic.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

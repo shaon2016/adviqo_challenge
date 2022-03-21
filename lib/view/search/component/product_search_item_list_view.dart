@@ -1,5 +1,5 @@
-import 'package:adviqo_challenge/view/search/boc/product_search_cubit.dart';
-import 'package:adviqo_challenge/view/search/boc/product_search_state.dart';
+import 'package:adviqo_challenge/view/search/bloc/product_search_cubit.dart';
+import 'package:adviqo_challenge/view/search/bloc/product_search_state.dart';
 import 'package:adviqo_challenge/view/search/component/product_search_item_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

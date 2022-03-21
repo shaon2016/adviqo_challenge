@@ -1,7 +1,8 @@
 import 'package:adviqo_challenge/util/view_util.dart';
-import 'package:adviqo_challenge/view/search/boc/product_search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/product_search_cubit.dart';
 
 class SearchTextFieldAreaView extends StatefulWidget {
   const SearchTextFieldAreaView({Key? key}) : super(key: key);

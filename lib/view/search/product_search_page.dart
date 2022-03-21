@@ -4,7 +4,7 @@ import 'package:adviqo_challenge/view/search/repo/product_search_reoo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'boc/product_search_cubit.dart';
+import 'bloc/product_search_cubit.dart';
 
 class ProductSearchPage extends StatelessWidget {
   const ProductSearchPage({Key? key}) : super(key: key);
