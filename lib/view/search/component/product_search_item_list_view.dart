@@ -6,9 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../other/enums.dart';
 
-class SearchItemListView extends StatelessWidget {
+class SearchItemListView extends StatefulWidget {
   const SearchItemListView({Key? key}) : super(key: key);
 
+  @override
+  State<SearchItemListView> createState() => _SearchItemListViewState();
+}
+
+class _SearchItemListViewState extends State<SearchItemListView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductSearchCubit, ProductSearchState>(
@@ -50,5 +55,11 @@ class SearchItemListView extends StatelessWidget {
           }
         },
         listener: (ctx, state) {});
+  }
+
+  @override
+  void dispose() {
+    context.read<ProductSearchCubit>().productScrollController.dispose();
+    super.dispose();
   }
 }
