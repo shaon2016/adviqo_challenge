@@ -31,7 +31,7 @@ Test structure
 
 Some Screenshots of the App
 
-![](adviqo_challenge/media/screenshot/search.png) ![](adviqo_challenge/media/screenshot/detail.png)
+![](media/screenshot/search.png) ![](media/screenshot/detail.png)
 
 # Tools
 Bloc State management system
