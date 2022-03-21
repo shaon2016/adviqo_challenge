@@ -6,7 +6,8 @@ import '../../../core/data_provider/app_url.dart';
 import '../../../other/enums.dart';
 
 class ProductDetailRepo extends BaseRepo {
-  Future<ProductDetailsResponse?> fetch(String productId) async {
+  Future<ProductDetailsResponse?> fetch(String productId,
+      [isToTest = false]) async {
     final map = <String, dynamic>{};
 
     try {
@@ -20,7 +21,7 @@ class ProductDetailRepo extends BaseRepo {
         final data = ProductDetailsResponse.fromJson(result.data);
 
         final currentProduct = Product(id: data.id, title: data.title);
-        _addProduct(currentProduct);
+        if (!isToTest) _addProduct(currentProduct);
         return data;
       }
     } catch (e) {

@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'package:adviqo_challenge/core/base/base_repo.dart';
 import 'package:adviqo_challenge/core/data_provider/app_url.dart';
-import 'package:adviqo_challenge/core/data_provider/hive_db/entity/product.dart';
 import 'package:adviqo_challenge/view/detail/model/product_detail_response.dart';
 import 'package:adviqo_challenge/view/detail/repo/product_detail_repo.dart';
 import 'package:dio/dio.dart';
@@ -32,7 +30,7 @@ main() {
     final fakeDetailData = ProductDetailsResponse.fromJson(fakeResponse.data);
 
     // Matching Server response with our fake mock response
-    final productDetail = await repo.fetch(productId);
+    final productDetail = await repo.fetch(productId, true);
     expect(fakeDetailData.toString(), productDetail.toString());
   });
 
