@@ -28,9 +28,17 @@ Test structure
         * detail
         * resource
         * search
-        
-In this project, we have used Bloc state management system.
-You can search products, can see details. 
+
+Some Screenshots of the App
+
+![](adviqo_challenge/media/screenshot/search.png) ![](adviqo_challenge/media/screenshot/detail.png)
+
+# Tools
+Bloc State management system
+Dio for Api Calling
+Mockito for Unit Testing
 
 We have also implemented unit test cases for our two api and hive NoSql store product logic.
+
+
 
