@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:adviqo_challenge/util/view_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../other/enums.dart';
@@ -13,6 +11,7 @@ class ApiClient {
     _initInterceptors();
   }
 
+  /// shows api client request and response data in log
   void _initInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       debugPrint(
@@ -30,6 +29,8 @@ class ApiClient {
     }));
   }
 
+  /// request method helps to connect with server
+  /// GET, POST
   Future request(
       String url, Method method, Map<String, dynamic>? params) async {
     late Response response;

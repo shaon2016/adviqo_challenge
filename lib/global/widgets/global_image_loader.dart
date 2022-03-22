@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Global widget to load image
 class GlobalImageLoader extends StatelessWidget {
   final String imageUrl;
   final String placeholder;

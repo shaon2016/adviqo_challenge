@@ -36,7 +36,7 @@ class _SearchTextFieldAreaViewState extends State<SearchTextFieldAreaView> {
                 suffix: InkWell(
                   onTap: () {
                     _searchTextController.clear();
-                    context.read<ProductSearchCubit>().clearSearch();
+                    context.read<ProductSearchCubit>().clearSearchText();
                   },
                   child: const Icon(Icons.clear),
                 ),

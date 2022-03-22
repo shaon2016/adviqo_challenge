@@ -3,6 +3,7 @@ import 'package:adviqo_challenge/view/detail/bloc/product_detail_state.dart';
 import 'package:adviqo_challenge/view/detail/repo/product_detail_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Details page business logic and a medium between state and view
 class ProductDetailCubit extends Cubit<ProductDetailState> {
   final ProductDetailRepo _productDetailRepo;
 

@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import '../../../core/data_provider/app_url.dart';
 import '../../../other/enums.dart';
 
+/// Repo class to fetch api data
+/// Database and api related work
 class ProductSearchRepo extends BaseRepo {
   Future<List<ProductSearchResults>> searchItems(String searchQuery, int offset,
       {int limit = 20}) async {

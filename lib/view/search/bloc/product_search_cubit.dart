@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../other/enums.dart';
 
+/// Search page business logic and a medium between state and view
 class ProductSearchCubit extends Cubit<ProductSearchState> {
   final ProductSearchRepo _repo;
 
@@ -56,7 +57,7 @@ class ProductSearchCubit extends Cubit<ProductSearchState> {
     searchItems();
   }
 
-  void clearSearch() {
+  void clearSearchText() {
     emit(state.copyWith(data: [], status: DataStatus.initial));
   }
 }

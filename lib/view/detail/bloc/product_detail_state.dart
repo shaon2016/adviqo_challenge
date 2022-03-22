@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../other/enums.dart';
 
+/// Hold the details page data and its data manipulation state
 class ProductDetailState extends Equatable {
   final DataStatus status;
   final ProductDetailsResponse? data;
@@ -20,5 +21,5 @@ class ProductDetailState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [data];
+  List<Object?> get props => [data, status];
 }

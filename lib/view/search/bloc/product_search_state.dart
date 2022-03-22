@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../other/enums.dart';
 
+/// Hold the search page data and its data manipulation state
 class ProductSearchState extends Equatable {
   final DataStatus status;
   final List<ProductSearchResults> data;
